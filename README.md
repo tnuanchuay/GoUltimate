@@ -77,3 +77,4 @@ foo(Reader d){}
 foo(SomeReader)
 //someReader will be moved to Heap
 ```
+- Some staff it too large to put in to stack, so it move to heap, also dynamic staff such as that have unknow size as well.
