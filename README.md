@@ -28,16 +28,20 @@ so when we have
 so they move/escape data from memory of stack to heap, heap like common place of shared memory that used between 2 stack.
 
 - better to write
-```
+```go
 var u user
 err := json.Unmashal([]byte("..."), &u)
 return &u
 ```
 than
-```
+```go
 var u &user
 err := json.Unmashal([]byte("..."), &u)
 return u
 ```
 you can see this scope of function and sharing like this function finally return sharing object. it's focused.
 
+- you can see data movement by...
+```shell
+go build -gcflags "-m -m"
+```
