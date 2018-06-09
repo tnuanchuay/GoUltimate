@@ -1,5 +1,5 @@
 # GoUltimate
-
+## Reference
 - `new()` return reference of data
 - `make()` would return data structure of reference like
 ```go
@@ -45,3 +45,24 @@ you can see this scope of function and sharing like this function finally return
 ```shell
 go build -gcflags "-m -m"
 ```
+
+## Escape
+- compiler translation
+```go 
+  type X sturct{ p int }
+  x2 := &X{}
+  x2.p = &i2
+  //translate to
+  (*x2).p = &i2
+```
+and i2 escape to heap
+
+- cmd to see memory move then when ... is function
+```
+go test -gcflags "-m -m" -run none -bench ... -benchmem -memprofile mem.out
+```
+- memory display tool
+```
+go tool pprof -alloc_space mem.out
+```
+- sometime, compiler doesn't work properly (depends on version also). sometime the escape/kickout some in-stack variable to heap.
