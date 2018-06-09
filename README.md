@@ -39,7 +39,7 @@ var u &user
 err := json.Unmashal([]byte("..."), &u)
 return u
 ```
-you can see this scope of function and sharing like this function finally return sharing object. it's focused.
+you can see this scope of function and sharing like this function finally return sharing object. it's about focusing.
 
 - you can see data movement by...
 ```shell
@@ -57,7 +57,7 @@ go build -gcflags "-m -m"
 ```
 and i2 escape to heap
 
-- cmd to see memory move then when ... is function
+- cmd to see memory movement when ... is expected function
 ```
 go test -gcflags "-m -m" -run none -bench ... -benchmem -memprofile mem.out
 ```
@@ -66,3 +66,14 @@ go test -gcflags "-m -m" -run none -bench ... -benchmem -memprofile mem.out
 go tool pprof -alloc_space mem.out
 ```
 - sometime, compiler doesn't work properly (depends on version also). sometime the escape/kickout some in-stack variable to heap.
+
+- benchmark and memory profiling, we will get rate info like ns/op, alloc/op
+```
+go test -run none -bench . -benchtime 3s -benchmem -memprofile mem.out
+```
+- doing interface when being a argument, it'll move that argument to heap when call that function(interface-converted) like
+```go
+foo(Reader d){}
+foo(SomeReader)
+//someReader will be moved to Heap
+```
