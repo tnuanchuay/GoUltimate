@@ -1,4 +1,5 @@
 # GoUltimate
+https://www.ardanlabs.com/blog/2017/06/language-mechanics-on-memory-profiling.html
 ## Reference
 - `new()` return reference of data
 - `make()` would return data structure of reference like
