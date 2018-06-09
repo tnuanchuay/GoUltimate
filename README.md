@@ -79,3 +79,20 @@ foo(SomeReader)
 //someReader will be moved to Heap
 ```
 - Some stuff it too large to put in to stack, so it move to heap, also dynamic stuff such as slice that have unknow size as well.
+## Profiling & Tracer
+- Profiling
+
+```
+go build -o app .
+time ./app > p.out
+go tool pprof p.out
+```
+
+- Tracer
+```
+go build -o app .
+time ./app > t.out
+go tool trace t.out
+```
+- STW => stop the world, Thread still work during GC free memory,
+- Go always use number of thread as number of processor, seems like -> it send gorountine to run in thread.
