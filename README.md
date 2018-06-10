@@ -95,4 +95,6 @@ time ./app > t.out
 go tool trace t.out
 ```
 - STW => stop the world, Thread still work during GC free memory,
-- Go always use number of thread as number of processor, seems like -> it send gorountine to run in thread.
+- Go always use number of thread as number of processor we have, seems like -> it send gorountine to run in thread.
+- GC Mark -> Remove
+
